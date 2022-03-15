@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <style type="text/css">
+        #selectOperation>div {
+            vertical-align: middle;
+            border: 1px solid #99CCFF;
+            display: inline-block;
+            margin: 5px;
+            min-height: 30px;
+            min-width: 75px;
+            padding: 2px;
+            padding-top: 4px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        #selectOperation>div:hover {
+            box-shadow: -1px 0 10px #99CCFF;
+        }
+
+        #domNodes {
+            border: 1px solid yellow;
+        }
+
+        #domNodes h3 {
+            text-align: center;
+        }
+
+        #domNodes>div {
+            border: 1px solid yellow;
+            margin: 5px;
+            min-height: 50px;
+            width: 75px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #domNodes>span {
+            border: 1px solid red;
+            margin: 5px;
+            min-height: 30px;
+            min-width: 30px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #domNodes {
+            vertical-align: top;
+        }
+
+        .addDiv {
+            border-color: #F8AC00;
+            border-radius: 15%;
+        }
+
+        .addSpan {
+            border-color: #008000;
+            background-color: #ADFF2F;
+        }
+
+        .setContentPrev {
+            border-color: #FFCC99;
+        }
+
+        .delPrevNode {
+            border-color: #A9ED86;
+        }
+
+        .delNextNode {
+            border-color: #ADFF2F;
+        }
+
+        .delAllType {
+            border-color: #9966FF;
+        }
+
+        .setContentPrev {
+            background-color: sandybrown;
+        }
+    </style>
+    <section>
+        <h1>EXERCICI 01 - DOM</h1>
+        <nav id="selectOperation">
+            <input type="text" id="dades" />
+            <div id="addDiv"> NEW ADD DIV </div>
+            <div id="addSpan"> NEW ADD SPAN </div>
+            <div id="setContentPrev"> NEW DIV SET CONTENT PREVIOUS ELEMENT </div>
+            <div id="delPrevNode"> NEW DIV DELETE PREVIOUS ELEMENT </div>
+            <div id="delNextNode"> NEW DIV DELETE NEXT ELEMENT </div>
+            <div id="replaceMeForFirst"> NEW DIV REPLACE ME FOR FIRST</div>
+            <div id="addAttr"> NEW DIV SET ATTRIBUTE</div>
+        </nav>
+        <div id="domNodes">
+            <h3>!!ADD DIVS HERE!!!</h3>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="practica07.js "></script>
+</body>
+
+</html>
