@@ -11,7 +11,11 @@ $('#fight').on('click', function(){
     $("#fight ,#player1Win, #player2Win, #draw ").hide();
 
     cargarImagenes("#jugador1");
-
+    /* 3. Al clicar sobre una opció del 1r jugador:
+        a) guarda en una variable la opció seleccionada (el src, id.. el que escullis)
+        b) utilitza .off() para desvincular tots los esdeveniments de les opcions del 1er jugador.
+        c) Elimina les opcions del 1er jugador, i crea les del segon jugador 
+        d) Anima cada opció igual que has fet amb les del 1r jugador.*/
     onHover('#jugador1 > img', function(target) {
         let jugador1Img = target.attr("src");
         let jugador1DataId = target. attr("data-id");
@@ -20,7 +24,16 @@ $('#fight').on('click', function(){
         $('#jugador1 > h3').css("background-color","transparent");
         $('#jugador2 > h3').css("background-color","red");
 
-
+     /* 4. Al clicar una opció del jugador 2:
+            a) guarda en una variable la opció seleccionada (el src, id.. el que escullis)
+            b) Utilitza .off() para desvincular tots els esdeveniments del 2o jugador.
+            c) Elimina les opcions del 2on jugador
+            d) Comprova les opcions seleccionades por els jugadors
+            i) Mostra el missatge corresponent al jugador guanyador
+            ii) Crea de nou les imatges corresponents a les escollides per els jugadors
+            iii) anima les opcions perquè es situïn al centre (position:absolute , opció del
+            jugador1 a left:150px y top:150px, i jugador2 a left:-150px y top150px:
+            aproximadament). */
         cargarImagenes('#jugador2');
 
         onHover('#jugador2 > img', function (target) {
@@ -30,8 +43,21 @@ $('#fight').on('click', function(){
             $('#jugador2 > img').remove();
 
 
-            $('#jugador1').append('<img src='+jugador1Img+' data-id='+jugador1DataId+' />')
-            $('#jugador2').append('<img src='+jugador2Img+' data-id='+jugador2DataId+' />')
+            $('#jugador1').append('<img src='+jugador1Img+' data-id='+jugador1DataId+' />');
+            $('#jugador2').append('<img src='+jugador2Img+' data-id='+jugador2DataId+' />');
+            $('#draw').css("display","block");
+            $('#draw').append('#jugador1 > img');
+            $('#jugador1 > img').animate({ 
+                    position :'absolute',
+                    left : '-150px',
+                    top : '150px'
+            });
+            $('#jugador2 > img').animate({ 
+                position :'absolute',
+                left : '150px',
+                top : '150px'
+        });
+
 
             // Calcular quien ha ganado según la elección
             if (jugador1DataId == jugador2DataId) {
@@ -52,25 +78,10 @@ $('#fight').on('click', function(){
             
 
         });
-
-    });
-        /* 3. Al clicar sobre una opció del 1r jugador:
-        a) guarda en una variable la opció seleccionada (el src, id.. el que escullis)
-        b) utilitza .off() para desvincular tots los esdeveniments de les opcions del 1er jugador.
-        c) Elimina les opcions del 1er jugador, i crea les del segon jugador 
-        d) Anima cada opció igual que has fet amb les del 1r jugador.*/
-            /* 4. Al clicar una opció del jugador 2:
-            a) guarda en una variable la opció seleccionada (el src, id.. el que escullis)
-            b) Utilitza .off() para desvincular tots els esdeveniments del 2o jugador.
-            c) Elimina les opcions del 2on jugador
-            d) Comprova les opcions seleccionades por els jugadors
-            i) Mostra el missatge corresponent al jugador guanyador
-            ii) Crea de nou les imatges corresponents a les escollides per els jugadors
-            iii) anima les opcions perquè es situïn al centre (position:absolute , opció del
-            jugador1 a left:150px y top:150px, i jugador2 a left:-150px y top150px:
-            aproximadament). */
+    });         
 });
 
+// carga de imagenes jugador 1 y jugador 2
 function cargarImagenes (selector) {
     let imagenesCargadas = ["paper.png", "rock.png", "scissor.png"];
     for(let i = 0 ; i < imagenesCargadas.length; i++){
@@ -80,7 +91,7 @@ function cargarImagenes (selector) {
         $(selector).append(img);
     }
 }
-
+// funcion hover animacion
 function onHover(selector, callback){
     $(selector).mouseenter(function (){
         $(this).stop();
