@@ -36,6 +36,7 @@ $('#fight').on('click', function(){
             aproximadament). */
         cargarImagenes('#jugador2');
 
+        // animacion , luego cuando se clica la imagen, se ejecuta la funcion con su parametro que es la imagen
         onHover('#jugador2 > img', function (target) {
             let jugador2Img = target.attr("src");
             let jugador2DataId = target. attr("data-id");
@@ -53,35 +54,39 @@ $('#fight').on('click', function(){
 
             // Calcular quien ha ganado según la elección
             if (jugador1DataId == jugador2DataId) {
-                alert('Empate');
-                animacion();
-                animacion2();
+                // si es empate ,  la animacion sera diferente
+                $('#draw').show().text('EMPATE!!!');
+                $('#jugador1 > img').animate({ 
+                    position : 'absolute',
+                    left : '95px',
+                    top : '150px'
+                }, 500);
+                $('#jugador2 > img').animate({ 
+                    position : 'absolute',
+                    left : '-65px',
+                    top : '150px'
+                }, 500);
+                
             } else if (jugador1DataId == '1' && jugador2DataId == '2') {
                 $('#player1Win').show();
-                animacion2();
-                animacion();
             } else if (jugador1DataId == '1' && jugador2DataId == '3') {
                 $('#player2Win').show();
-                animacion();
-                animacion2();
             } else if (jugador1DataId == '2' && jugador2DataId == '1') {
                 $('#player2Win').show();
-                animacion2();
-                animacion();
             } else if (jugador1DataId == '2' && jugador2DataId == '3') {
                 $('#player1Win').show();
-                animacion();
-                animacion2();
             } else if (jugador1DataId == '3' && jugador2DataId == '1') {
                 $('#player1Win').show();
-                animacion2();
-                animacion();
             } else if (jugador1DataId == '3' && jugador2DataId == '2') {
                 $('#player2Win').show();
+                
+            }
+
+            if(jugador1DataId != jugador2DataId){
                 animacion();
                 animacion2();
             }
-
+            
             // condicional para que la imagen ganadora se posiciones sobre la otra
             if($('#player1Win').is(':visible')){
                 console.log('1');
@@ -98,14 +103,14 @@ $('#fight').on('click', function(){
                     position : 'absolute',
                     left : '150px',
                     top : '150px'
-                }, 300);
+                }, 500);
             }
             function animacion2(){
                 $('#jugador2 > img').animate({ 
                     position : 'absolute',
                     left : '-150px',
                     top : '150px'
-                }, 300);
+                }, 500);
             }
             
         });
@@ -140,6 +145,7 @@ function onHover(selector, callback){
         })
     });
 
+    // cuando haga click en alguna mano, se ejecuta el callback
     $(selector).click(function (e) {
         callback($(this))
     })
