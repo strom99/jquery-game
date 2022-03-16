@@ -30,12 +30,13 @@ function creaDiv () {
     div.on('click', function(){
         let mensaje = prompt("pon tu mensaje");
         let elementoAnterior = div.prev();
+        // prop , coger el nombre de una etiqueta
         if(elementoAnterior.prop('tagName') !== 'H3' ){
             elementoAnterior.text(mensaje)
         }
     });
 }
-//const json = '{ "nombre": "Alisson", "comidas": [1,2] }'console.log(json);console.log(JSON.parse(json)
+
 // 1.4.	Quan es cliqui sobre el div #delPrevNode crea un  DIV amb el text 'Remove Preview' , de la clase delPrevNode dins #domNodes.   Al clicar sobre el DIV creat elimina el node anterior a el node clicat.
 $('#delPrevNode').on('click', function(){
     console.log('clic')
@@ -72,6 +73,7 @@ $('#replaceMeForFirst').on('click', function(){
         const elementoClonado = div.clone();
         div.remove();
         domNodes.children().first().remove();
+        // inserta el elemento clonado al inicio
         domNodes.prepend(elementoClonado);
     })
 });
@@ -84,6 +86,7 @@ $('#addAttr').on('click', function(){
     div.on('click', function(){
         let nomAtributo = prompt("Introduce el nombre de atributo:");
         let valorAtributo = prompt("Introduce el valor del atributo:");
+        // devolvemos los hermanos del div , para cambiarle los valores que ingrese
         div.siblings().css(nomAtributo,valorAtributo);
 
     })
