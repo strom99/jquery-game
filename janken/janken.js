@@ -42,41 +42,72 @@ $('#fight').on('click', function(){
             $('#jugador2 > h3').css("background-color","transparent");
             $('#jugador2 > img').remove();
 
-
             $('#jugador1').append('<img src='+jugador1Img+' data-id='+jugador1DataId+' />');
             $('#jugador2').append('<img src='+jugador2Img+' data-id='+jugador2DataId+' />');
-            $('#draw').css("display","block");
-            $('#draw').append('#jugador1 > img');
-            $('#jugador1 > img').animate({ 
-                    position :'absolute',
-                    left : '-150px',
-                    top : '150px'
+            $('#jugador1 > img').attr('class','manos');
+            $('#jugador2 > img').attr('class','manos');
+            $('#jugador1 > img , #jugador2 > img').css({
+                background : 'blue',
+                position : 'absolute'
             });
-            $('#jugador2 > img').animate({ 
-                position :'absolute',
-                left : '150px',
-                top : '150px'
-        });
-
 
             // Calcular quien ha ganado según la elección
             if (jugador1DataId == jugador2DataId) {
                 alert('Empate');
+                animacion();
+                animacion2();
             } else if (jugador1DataId == '1' && jugador2DataId == '2') {
                 $('#player1Win').show();
+                animacion2();
+                animacion();
             } else if (jugador1DataId == '1' && jugador2DataId == '3') {
                 $('#player2Win').show();
+                animacion();
+                animacion2();
             } else if (jugador1DataId == '2' && jugador2DataId == '1') {
                 $('#player2Win').show();
+                animacion2();
+                animacion();
             } else if (jugador1DataId == '2' && jugador2DataId == '3') {
-                $('#player2Win').show();
+                $('#player1Win').show();
+                animacion();
+                animacion2();
             } else if (jugador1DataId == '3' && jugador2DataId == '1') {
                 $('#player1Win').show();
+                animacion2();
+                animacion();
             } else if (jugador1DataId == '3' && jugador2DataId == '2') {
                 $('#player2Win').show();
+                animacion();
+                animacion2();
+            }
+
+            // condicional para que la imagen ganadora se posiciones sobre la otra
+            if($('#player1Win').is(':visible')){
+                console.log('1');
+                $('#jugador1 > img').css({"z-index":"1"});
+            }
+            if($('#player2Win').is(':visible')){
+                console.log('2');
+                $('#jugador2 > img').css({"z-index":"1"});
+            }
+
+            // animacion al centro de las opciones
+            function animacion(){
+                $('#jugador1 > img').animate({ 
+                    position : 'absolute',
+                    left : '150px',
+                    top : '150px'
+                }, 300);
+            }
+            function animacion2(){
+                $('#jugador2 > img').animate({ 
+                    position : 'absolute',
+                    left : '-150px',
+                    top : '150px'
+                }, 300);
             }
             
-
         });
     });         
 });
